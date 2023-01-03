@@ -29,6 +29,9 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roleCollection;
 
+    public User() {
+    }
+
     public User(Long id, String firstName, String lastName, String email, String password, Collection<Role> roleCollection) {
         this.id = id;
         this.firstName = firstName;
