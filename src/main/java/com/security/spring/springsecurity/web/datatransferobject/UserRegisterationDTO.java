@@ -7,6 +7,8 @@ public class UserRegisterationDTO {
     private String password;
     private String email;
 
+    private String userRoles;
+
 
     public UserRegisterationDTO() {
     }
@@ -48,5 +50,24 @@ public class UserRegisterationDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(String userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegisterationDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", userRoles='" + userRoles + '\'' +
+                '}';
     }
 }

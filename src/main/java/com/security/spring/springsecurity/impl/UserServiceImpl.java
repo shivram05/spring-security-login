@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-
     private UserRepository userRepository;
 
     @Autowired
@@ -35,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public User saveUserData(UserRegisterationDTO userRegisterationDTO) {
         User user = new User(userRegisterationDTO.getFirstName(), userRegisterationDTO.getLastName(),
                 userRegisterationDTO.getEmail(),
-                encoder.encode(userRegisterationDTO.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+                encoder.encode(userRegisterationDTO.getPassword()), Arrays.asList(new Role(userRegisterationDTO.getUserRoles())));
 
         return userRepository.save(user);
     }

@@ -32,18 +32,26 @@ public class SecurityConfiguration{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.cors().and().csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/registration/**",
-                        "/js/**","/css/**","/img/**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll()
+        http.authorizeRequests().antMatchers("/registration/**",
+                        "/js/**","/css/**","/img/**").permitAll().
+                antMatchers("/")
+                .hasAnyAuthority("USER",
+                        "CREATOR", "EDITOR", "ADMIN")
+                .antMatchers("/new")
+                .hasAnyAuthority("ADMIN", "CREATOR")
+                .antMatchers("/edit/**")
+                .hasAnyAuthority("ADMIN", "EDITOR")
+                .antMatchers("/delete/**")
+                .hasAuthority("ADMIN")
+                .anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll()
                 .and().logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll().and().exceptionHandling().accessDeniedPage("/403");
 
+        http.csrf().disable();
        return http.build();
     }
 }
