@@ -15,15 +15,20 @@
     <h1>Employee Management System</h1>
 
     <hr>
-    <h2>Add Employee</h2>
-    <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+    <h2>Update Employee</h2>
+    <form action="#" th:action="@{/updateEmployee}" th:object="${updateEmployeeModelAttribute}" method="post">
 
-        <input type="text" th:field="*{firstName}" required autofocus = "autofocus" placeholder="First Name" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{lastName}" required autofocus = "autofocus" placeholder="Last Name" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{email}" required autofocus = "autofocus" placeholder="Employee Email" class="form-control mb-4 col-4">
+<!--        add hidden form field to update -->
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{lastName}"  class="form-control mb-4 col-4">
+        <input type="text" th:field="*{email}"  class="form-control mb-4 col-4">
 
-        <button type="submit" class="btn btn-info col-2">submit</button>
+        <button type="submit" class="btn btn-info col-2">Update Employee</button>
     </form>
+
+    <hr>
+    <a href="@{/}" class="btn btn-primary">Back to Employee List</a>
 </div>
 
 </body>

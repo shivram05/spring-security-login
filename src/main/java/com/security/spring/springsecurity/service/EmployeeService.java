@@ -13,4 +13,6 @@ public interface EmployeeService {
     List<Employee> listEmployee();
 
     void deleteEmployeeById(Long id);
+
+    Employee getEmployeeById(long id);
 }
