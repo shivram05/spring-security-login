@@ -33,4 +33,6 @@ public class UserRegisterationContoller {
         userService.saveUserData(userRegisterationDTO);
         return "redirect:/registration?success";
     }
+
+
 }
